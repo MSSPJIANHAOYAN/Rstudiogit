@@ -1,0 +1,95 @@
+---
+title: "Books"
+output: pdf_document
+---
+
+Document assignment
+Consider the following situation:
+Assignment 1
+Haviland Wright September 12, 2018
+A sloppy printer produces books with an average of 2 misprints per page. You want to know how many pages have more than k misprints in a book of n pages. Make an n x k table that shows the relationship between the total number of pages in a book and the number of pages with k misprints.
+Show and explain your work. Include equations and calculations to teach the reader how to solve the problem. Include an image of a book.
+Push your solution to a github repository and submit the url for repository on blackboard. Be sure your repo includes your document as a pdf file and as an RMD file. Include other files needed to recompile your document.
+
+##For the book of 100 pages
+
+```{r}
+num_pages1<-100
+data_misprint<-rpois(num_pages1,lambda = 2)
+count_k<-c()
+set.seed(2018)
+for(k in 0:8){
+  count<-0
+  for(i in 1:num_pages1){
+    if(k<data_misprint[i]){
+      count<-count+1
+    }
+   }
+  count_k[k]<-count
+}
+count_k
+page100<-data.frame((count_k))
+
+```
+##For the book of 150 pages
+```{r}
+num_pages2<-150
+data_misprint<-rpois(num_pages2,lambda = 2)
+count_k<-c()
+set.seed(2018)
+for(k in 0:8){
+  count<-0
+  for(i in 1:num_pages2){
+    if(k<data_misprint[i]){
+      count<-count+1
+    }
+   }
+  count_k[k]<-count
+}
+count_k
+page150<-data.frame(count_k)
+```
+##For the book of 200 pages
+```{r}
+num_pages3<-200
+data_misprint<-rpois(num_pages3,lambda = 2)
+count_k<-c()
+set.seed(2018)
+for(k in 0:8){
+  count<-0
+  for(i in 1:num_pages3){
+    if(k<data_misprint[i]){
+      count<-count+1
+    }
+   }
+  count_k[k]<-count
+}
+count_k
+page200<-data.frame(count_k)
+```
+##For the book of 250 pages
+```{r}
+num_pages4<-250
+data_misprint<-rpois(num_pages4,lambda = 2)
+count_k<-c()
+set.seed(2018)
+for(k in 0:8){
+  count<-0
+  for(i in 1:num_pages4){
+    if(k<data_misprint[i]){
+      count<-count+1
+    }
+   }
+  count_k[k]<-count
+}
+count_k
+page250<-data.frame(count_k)
+```
+##latex
+$p=e^{-\lambda}*{-\lambda}/{k!}$
+##tabel
+
+```{r}
+protable<-cbind(page100,page150,page200,page250)
+knitr::kable(protable,row.names=c(1:8),col.names = c("page100","page150","page200","page250"))
+```
